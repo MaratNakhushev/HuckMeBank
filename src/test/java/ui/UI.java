@@ -2,8 +2,8 @@ package ui;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import ui.pageObject.RegistrationForm;
 import ui.pageObject.MainPage;
+import ui.pageObject.RegistrationForm;
 import ui.pageObject.ValidationCodeForm;
 import utils.UserRegistrationData;
 
@@ -18,7 +18,7 @@ public class UI extends BaseUI {
             "123456789",
             "123456789");
 
-    @Test
+    @Test(groups = "Ui tests")
     public void checkValidDataInput() {
         Assert.assertTrue(mainPage.isDisplayed(), "Main page is not open");
         registrationForm
@@ -28,19 +28,22 @@ public class UI extends BaseUI {
         Assert.assertTrue(validationCodeForm.isDisplayed());
     }
 
-    @Test
+    @Test(groups = "Ui tests")
     public void inputInvalidName() {
         Assert.assertTrue(mainPage.isDisplayed(), "Main page is not open");
         registrationForm
                 .inputAllData(validData)
-                .inputName("")
+                .inputName("a")
                 .clickRegistrationButton();
-        String sdf = registrationForm.getTipToolText();
+        Assert.assertEquals(registrationForm.getNameErrorText(), "Ваше имя (ФИО) не должно быть короче 3 символов.", "Name error message does not match");
+        registrationForm
+                .inputName("@")
+                .clickRegistrationButton();
         Assert.assertEquals(registrationForm.getNameErrorText(), "Имя может содержать только буквы английского и русского алфавита", "Name error message does not match");
 
     }
 
-    @Test
+    @Test(groups = "Ui tests")
     public void checkSecondAlertMessage() {
         registrationForm
                 .inputAllData(validData)

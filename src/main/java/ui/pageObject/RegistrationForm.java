@@ -1,10 +1,8 @@
 package ui.pageObject;
 
-import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import utils.UserRegistrationData;
 
 import static com.codeborne.selenide.Selenide.*;
@@ -30,9 +28,8 @@ public class RegistrationForm extends BaseForm {
         return new RegistrationForm();
     }
 
-    public RegistrationForm inputEmail(String email) {
+    public void inputEmail(String email) {
         emailField.setValue(email);
-        return new RegistrationForm();
 
     }
 
@@ -62,9 +59,8 @@ public class RegistrationForm extends BaseForm {
         return this;
     }
 
-    public RegistrationForm closeAlert() {
+    public void closeAlert() {
         switchTo().alert().accept();
-        return this;
     }
 
     public String getAlertText() {
@@ -72,10 +68,6 @@ public class RegistrationForm extends BaseForm {
     }
 
     public String getNameErrorText() {
-        return invalidNameMassage.getText();
-    }
-
-    public String getTipToolText() {
-        return nameField.getAttribute("title");
+        return invalidNameMassage.should(Condition.appear).getText();
     }
 }

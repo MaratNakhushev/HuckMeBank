@@ -19,6 +19,7 @@ public class JsonReader {
             throw new RuntimeException(e);
         }
     }
+
     public static String getStringParam(String setFile, String param) {
         var node = jsonRoot(setFile).get(param);
         if (node.getNodeType() != JsonNodeType.STRING) {

@@ -10,7 +10,7 @@ public abstract class BaseForm {
         this.uniqElement = uniqElement;
     }
 
-    public boolean isDisplayed(){
+    public boolean isDisplayed() {
         return uniqElement.isDisplayed();
     }
 }
