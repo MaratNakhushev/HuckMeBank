@@ -1,9 +1,9 @@
 package ui.pageObject;
 
+import api.UserRegistrationData;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
-import api.UserRegistrationData;
 
 import static com.codeborne.selenide.Selenide.*;
 
@@ -21,6 +21,15 @@ public class RegistrationForm extends BaseForm {
 
     public RegistrationForm() {
         super($x("//form[@name='inputForAuth']"));
+    }
+
+    public RegistrationForm inputAllData(UserRegistrationData allData) {
+        inputName(allData.getName());
+        inputEmail(allData.getEmail());
+        inputPhoneNumber(allData.getPhoneNumber());
+        inputPassword(allData.getPassword());
+        inputPasswordValidation(allData.getPasswordValidation());
+        return this;
     }
 
     public RegistrationForm inputName(String name) {
@@ -43,15 +52,6 @@ public class RegistrationForm extends BaseForm {
 
     public void inputPasswordValidation(String passwordValidation) {
         passwordValidationField.setValue(passwordValidation);
-    }
-
-    public RegistrationForm inputAllData(UserRegistrationData allData) {
-        inputName(allData.name);
-        inputEmail(allData.email);
-        inputPhoneNumber(allData.phoneNumber);
-        inputPassword(allData.password);
-        inputPasswordValidation(allData.passwordValidation);
-        return this;
     }
 
     public RegistrationForm clickRegistrationButton() {
