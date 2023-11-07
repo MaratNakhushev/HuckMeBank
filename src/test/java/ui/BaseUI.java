@@ -8,8 +8,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import utils.JsonReader;
 
-import static constants.TestDataPathConstant.TEST_CONFIG_PATH;
-import static constants.TestDataPathConstant.TEST_DATA_PATH;
+import static constants.Constants.TEST_CONFIG_PATH;
+import static constants.Constants.TEST_DATA_PATH;
 
 public class BaseUI {
 
